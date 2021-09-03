@@ -7,13 +7,13 @@ import com.nepplus.colosseum.databinding.ActivityMainBinding
 
 class MainActivity : BaseActivity() {
 
-    val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_main)
+        setupEvents()
+        setValues()
 
-        binding.txt.text = "바인딩ok"
+
     }
 
     override fun setupEvents() {
