@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import com.nepplus.colosseum.databinding.ActivityMainBinding
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
 
@@ -17,6 +18,21 @@ class MainActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
+        signInBtn.setOnClickListener {
+
+            val inputId = emailEdt.text.toString()
+            val inputPw = passwordEdt.text.toString()
+
+
+
+        }
+
+        signUpBtn.setOnClickListener {
+
+
+
+        }
 
     }
 
