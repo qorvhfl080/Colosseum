@@ -44,6 +44,8 @@ class ServerUtil {
                     val jsonObj = JSONObject(bodyStr)
                     Log.d("server", jsonObj.toString())
 
+//                    val code = jsonObj.getInt("code")
+//                    Log.d("server", code.toString())
                 }
             })
     
