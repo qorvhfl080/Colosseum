@@ -1,8 +1,10 @@
 package com.nepplus.colosseum.utils
 
-import okhttp3.FormBody
-import okhttp3.OkHttpClient
-import okhttp3.Request
+import android.util.Log
+import android.widget.Toast
+import okhttp3.*
+import org.json.JSONObject
+import java.io.IOException
 
 class ServerUtil {
 
@@ -16,7 +18,7 @@ class ServerUtil {
 
 //        로그인 기능 함수
         fun postRequestSignIn(id: String, pw: String) {
-
+//            호출하기
             val urlString = "${HOST_URL}/user";
             val formData = FormBody.Builder()
                 .add("email", id)
@@ -29,8 +31,22 @@ class ServerUtil {
                 .build()
 
             val client = OkHttpClient()
-            client.newCall(request)
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
 
+
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+
+                    val bodyStr = response.body!!.string()
+                    val jsonObj = JSONObject(bodyStr)
+                    Log.d("server", jsonObj.toString())
+
+                }
+            })
+    
         }
 
     }
