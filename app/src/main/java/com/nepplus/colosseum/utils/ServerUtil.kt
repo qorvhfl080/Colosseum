@@ -8,6 +8,11 @@ import java.io.IOException
 
 class ServerUtil {
 
+    interface JsonResponseHandler {
+
+        fun onResponse(jsonObj: JSONObject)
+
+    }
 
 
 
@@ -17,7 +22,7 @@ class ServerUtil {
         private val HOST_URL = "http://54.180.52.26"
 
 //        로그인 기능 함수
-        fun postRequestSignIn(id: String, pw: String) {
+        fun postRequestSignIn(id: String, pw: String, handler: JsonResponseHandler?) {
 //            호출하기
             val urlString = "${HOST_URL}/user";
             val formData = FormBody.Builder()
@@ -46,6 +51,7 @@ class ServerUtil {
 
 //                    val code = jsonObj.getInt("code")
 //                    Log.d("server", code.toString())
+                    handler?.onResponse(jsonObj)
                 }
             })
     
