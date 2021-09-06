@@ -1,5 +1,6 @@
 package com.nepplus.colosseum
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -22,6 +23,7 @@ class MainActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
 
         signInBtn.setOnClickListener {
 
@@ -58,7 +60,8 @@ class MainActivity : BaseActivity() {
 
         signUpBtn.setOnClickListener {
 
-
+            val myIntent = Intent(mContext, SignUpActivity::class.java)
+            startActivity(myIntent)
 
         }
 
