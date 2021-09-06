@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import com.nepplus.colosseum.utils.ServerUtil
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import org.json.JSONObject
@@ -17,6 +18,15 @@ class SignUpActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
+        emailEdt.addTextChangedListener {
+
+//            it 변수 활용 : 입력된 내용 파악
+            Log.d("server", it.toString())
+
+            checkEmailResultTxt.text = "중복 검사를 해주세요"
+
+        }
 
         checkEmailBtn.setOnClickListener {
 
