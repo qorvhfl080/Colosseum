@@ -52,6 +52,12 @@ class SignInActivity : BaseActivity() {
 //                            Toast.makeText(mContext, "${nickname}님 ${jsonObj.getString("message")}", Toast.LENGTH_SHORT).show()
 //                        }
 
+//                        서버가 내려주는 토큰값을 기기에 저장 (ContextUtil 사용)
+                        val dataObj = jsonObj.getJSONObject("data")
+                        val token = dataObj.getString("token")
+
+                        ContextUtil.setToken(mContext, token)
+
                         val myIntent = Intent(mContext, MainActivity::class.java)
                         startActivity(myIntent)
                         finish()
