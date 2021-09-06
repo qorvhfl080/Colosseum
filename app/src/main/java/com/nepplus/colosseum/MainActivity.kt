@@ -36,14 +36,18 @@ class MainActivity : BaseActivity() {
 
                     if (code == 200) {
 
+                        val dataObj = jsonObj.getJSONObject("data")
+                        val userObj = dataObj.getJSONObject("user")
+                        val nickname = userObj.getString("nick_name")
+
                         runOnUiThread {
-                            Toast.makeText(mContext, "${jsonObj.getString("code").toString()}", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(mContext, "${nickname}님 ${jsonObj.getString("message")}", Toast.LENGTH_SHORT).show()
                         }
 
                     } else {
 
                         runOnUiThread {
-                            Toast.makeText(mContext, "실패", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(mContext, "${jsonObj.getString("message")}", Toast.LENGTH_SHORT).show()
                         }
 
                     }
