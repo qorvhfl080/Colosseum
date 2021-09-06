@@ -31,5 +31,15 @@ class ViewTopicDetailActivity : BaseActivity() {
             .into(topicImg)
         titleTxt.text = mTopicData.title
 
+        getTopicDetailDataFromServer()
+
     }
+
+//    토론 상세 데이터 서버에서 불러오기
+    fun getTopicDetailDataFromServer() {
+
+
+
+    }
+
 }

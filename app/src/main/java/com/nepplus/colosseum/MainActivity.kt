@@ -3,6 +3,7 @@ package com.nepplus.colosseum
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.nepplus.colosseum.adapters.TopicAdapter
 import com.nepplus.colosseum.datas.TopicData
 import com.nepplus.colosseum.utils.ServerUtil
@@ -51,8 +52,9 @@ class MainActivity : BaseActivity() {
 
                 val dataObj = jsonObj.getJSONObject("data")
                 val topicsArr = dataObj.getJSONArray("topics")
+                val userObj = dataObj.getJSONObject("user")
 
-                for (i in 0 until  topicsArr.length()) {
+                for (i in 0 until topicsArr.length()) {
                     val topicObj = topicsArr.getJSONObject(i)
 
                     val tempTopicData = TopicData()
@@ -65,6 +67,7 @@ class MainActivity : BaseActivity() {
                 }
 
                 runOnUiThread {
+                    Toast.makeText(mContext, "${userObj.getString("nick_name")}님 환영합니다.", Toast.LENGTH_SHORT).show()
                     mTopicAdapter.notifyDataSetChanged()
                 }
 
