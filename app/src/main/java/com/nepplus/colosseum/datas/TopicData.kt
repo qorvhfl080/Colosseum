@@ -1,6 +1,8 @@
 package com.nepplus.colosseum.datas
 
-class TopicData(var id: Int, var title: String, var imageURL: String) {
+import java.io.Serializable
+
+class TopicData(var id: Int, var title: String, var imageURL: String) : Serializable {
 
     constructor() : this(0, "제목없음", "")
 
