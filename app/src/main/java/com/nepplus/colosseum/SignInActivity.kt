@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.nepplus.colosseum.utils.ContextUtil
 import com.nepplus.colosseum.utils.ServerUtil
 import kotlinx.android.synthetic.main.activity_sign_in.*
 import org.json.JSONObject
@@ -20,7 +21,15 @@ class SignInActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+        
+//        자동로그인 체크박스의 값이 바뀔때마다
+        autoLoginCheckBox.setOnCheckedChangeListener { compoundButton, isChecked ->
 
+            Log.d("check", isChecked.toString())
+
+            ContextUtil.setAutoLogin(mContext, isChecked)
+
+        }
 
         signInBtn.setOnClickListener {
 
@@ -69,6 +78,9 @@ class SignInActivity : BaseActivity() {
     }
 
     override fun setValues() {
+
+//        저장된 자동로그인 여부를 받아내서 체크박스에 반영
+        autoLoginCheckBox.isChecked = ContextUtil.getAutoLogin(mContext)
 
     }
 }
