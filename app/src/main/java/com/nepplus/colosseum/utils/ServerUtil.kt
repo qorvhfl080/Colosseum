@@ -90,7 +90,7 @@ class ServerUtil {
         }
 
 //        이메일 / 닉네임 중복 확인 함수
-        fun getRequestDuplCheck(type: String, value: String, handler: JsonResponseHandler) {
+        fun getRequestDuplCheck(type: String, value: String, handler: JsonResponseHandler?) {
 
             val url = "${HOST_URL}/user_check".toHttpUrlOrNull()!!.newBuilder()
             url.addEncodedQueryParameter("type", type)
