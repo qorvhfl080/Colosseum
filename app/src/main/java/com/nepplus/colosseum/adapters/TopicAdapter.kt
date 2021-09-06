@@ -19,7 +19,9 @@ class TopicAdapter(val mContext: Context, resId: Int, val mList: List<TopicData>
         }
         row!!
 
+        val data = mList[position]
 
+        //val title = row.findViewById<>()
 
         return row
     }

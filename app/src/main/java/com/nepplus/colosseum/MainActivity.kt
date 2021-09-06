@@ -2,13 +2,17 @@ package com.nepplus.colosseum
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.nepplus.colosseum.adapters.TopicAdapter
 import com.nepplus.colosseum.datas.TopicData
 import com.nepplus.colosseum.utils.ServerUtil
+import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
 
 class MainActivity : BaseActivity() {
 
     val mTopicList = ArrayList<TopicData>()
+
+    lateinit var mTopicAdapter: TopicAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +29,9 @@ class MainActivity : BaseActivity() {
     override fun setValues() {
 
         getMainDataFromServer()
+
+        mTopicAdapter = TopicAdapter(mContext, R.layout.topic_list_item, mTopicList)
+        topicListView.adapter = mTopicAdapter
 
     }
 
@@ -46,6 +53,10 @@ class MainActivity : BaseActivity() {
 
                     mTopicList.add(tempTopicData)
 
+                }
+
+                runOnUiThread {
+                    mTopicAdapter.notifyDataSetChanged()
                 }
 
             }
