@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.widget.Toast
 import com.nepplus.colosseum.databinding.ActivityMainBinding
 import com.nepplus.colosseum.utils.ServerUtil
 import kotlinx.android.synthetic.main.activity_main.*
@@ -27,11 +28,25 @@ class MainActivity : BaseActivity() {
             val inputId = emailEdt.text.toString()
             val inputPw = passwordEdt.text.toString()
 
-            ServerUtil.postRequestSignIn(inputId, inputPw, object: ServerUtil.JsonResponseHandler {
+            ServerUtil.postRequestSignIn(inputId, inputPw, object : ServerUtil.JsonResponseHandler {
                 override fun onResponse(jsonObj: JSONObject) {
 
-                    Log.d("server", jsonObj.toString())
+                    val code = jsonObj.getInt("code")
+                    Log.d("server", code.toString())
 
+                    if (code == 200) {
+
+                        runOnUiThread {
+                            Toast.makeText(mContext, "${jsonObj.getString("code").toString()}", Toast.LENGTH_SHORT).show()
+                        }
+
+                    } else {
+
+                        runOnUiThread {
+                            Toast.makeText(mContext, "실패", Toast.LENGTH_SHORT).show()
+                        }
+
+                    }
                 }
             })
 
