@@ -14,16 +14,38 @@
         android:text="이메일"
         android:inputType="textEmailAddress"/>
 
-    <EditText
-        android:id="@+id/emailEdt"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="이메일 입력"/>
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/emailEdt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="이메일 입력"
+            android:layout_weight="1"
+            android:inputType="textEmailAddress"/>
+
+        <Button
+            android:id="@+id/checkEmailBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="중복검사"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/checkEmailResultTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="중복 검사를 해주세요"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="비밀번호"/>
+        android:text="비밀번호"
+        android:layout_marginTop="10dp"/>
 
     <EditText
         android:id="@+id/passwordEdt"

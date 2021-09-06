@@ -18,6 +18,14 @@ class SignUpActivity : BaseActivity() {
 
     override fun setupEvents() {
 
+        checkEmailBtn.setOnClickListener {
+
+            val inputEmail = emailEdt.text.toString()
+
+            ServerUtil.getRequestDuplCheck("EMAIL", inputEmail, object : ServerUtil.JsonResponseHandler)
+
+        }
+
         signUpBtn.setOnClickListener {
 
             val inputEmail = emailEdt.text.toString()
@@ -37,6 +45,7 @@ class SignUpActivity : BaseActivity() {
 
                             runOnUiThread {
                                 Toast.makeText(mContext, "${jsonObj.getString("message")}", Toast.LENGTH_SHORT).show()
+                                finish()
                             }
 
                         } else {

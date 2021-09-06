@@ -3,6 +3,7 @@ package com.nepplus.colosseum.utils
 import android.util.Log
 import android.widget.Toast
 import okhttp3.*
+import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import org.json.JSONObject
 import java.io.IOException
 
@@ -88,6 +89,17 @@ class ServerUtil {
 
         }
 
+//        이메일 / 닉네임 중복 확인 함수
+        fun getRequestDuplCheck(type: String, value: String, handler: JsonResponseHandler) {
+
+            val url = "${HOST_URL}/user_check".toHttpUrlOrNull()!!.newBuilder()
+            url.addEncodedQueryParameter("type", type)
+            url.addEncodedQueryParameter("value", type)
+            val urlString = url.toString()
+
+            Log.d("server", urlString)
+
+        }
     }
 
 }
