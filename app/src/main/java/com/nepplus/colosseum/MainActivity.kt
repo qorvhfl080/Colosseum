@@ -2,6 +2,8 @@ package com.nepplus.colosseum
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.nepplus.colosseum.utils.ServerUtil
+import org.json.JSONObject
 
 class MainActivity : BaseActivity() {
 
@@ -19,5 +21,20 @@ class MainActivity : BaseActivity() {
 
     override fun setValues() {
 
+        getMainDataFromServer()
+
     }
+
+    fun getMainDataFromServer() {
+
+        ServerUtil.getRequestMainData(mContext, object : ServerUtil.JsonResponseHandler {
+            override fun onResponse(jsonObj: JSONObject) {
+
+
+
+            }
+        })
+
+    }
+
 }

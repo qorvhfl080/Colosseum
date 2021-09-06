@@ -9,11 +9,9 @@
     android:gravity="center"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/userNicknameTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="환영합니다."
-        android:textSize="24sp"/>
+    <ListView
+        android:id="@+id/topicListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

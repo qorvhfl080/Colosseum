@@ -1,5 +1,6 @@
 package com.nepplus.colosseum.utils
 
+import android.content.Context
 import android.util.Log
 import android.widget.Toast
 import okhttp3.*
@@ -119,6 +120,37 @@ class ServerUtil {
             })
 
         }
+
+//        메인화면 데이터 가져오기
+        fun getRequestMainData(context: Context, handler: JsonResponseHandler?) {
+
+            val url = "${HOST_URL}/v2/main_info".toHttpUrlOrNull()!!.newBuilder()
+            val urlString = url.toString()
+
+            Log.d("server", urlString)
+
+            val request = Request.Builder()
+                    .url(urlString)
+                    .get()
+                    .header("X-Http-Token", ContextUtil.getToken(context))
+                    .build()
+
+            val client = OkHttpClient()
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    val bodyString = response.body!!.string()
+                    val jsonObj = JSONObject(bodyString)
+                    Log.d("server", jsonObj.toString())
+                    handler?.onResponse(jsonObj)
+                }
+            })
+
+        }
+
     }
 
 }
