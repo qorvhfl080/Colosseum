@@ -106,6 +106,19 @@ class ViewTopicDetailActivity : BaseActivity() {
             secondSideTitleTxt.text = mTopicData.sideList[1].title
             secondSideVoteCountTxt.text = "${mTopicData.sideList[1].voteCount}표"
 
+            if (mTopicData.mySideId == -1) {
+                voteToFirstSideBtn.text = "투표하기"
+                voteToSecondSideBtn.text = "투표하기"
+            } else {
+                if (mTopicData.mySideId == mTopicData.sideList[0].id) {
+                    voteToFirstSideBtn.text = "취소하기"
+                    voteToSecondSideBtn.text = "선택변경"
+                } else {
+                    voteToFirstSideBtn.text = "선택변경"
+                    voteToSecondSideBtn.text = "취소하기"
+                }
+            }
+
             mReplyAdapter.notifyDataSetChanged()
         }
     }

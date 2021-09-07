@@ -12,8 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Colosseum"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ViewTopicDetailActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".EditReplyActivity"></activity>
+        <activity
+            android:name=".ViewTopicDetailActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".SplashActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">

@@ -5,6 +5,11 @@ import java.io.Serializable
 
 class TopicData(var id: Int, var title: String, var imageURL: String) : Serializable {
 
+    //    선택 진영 목록을 담아줄 ArrayList
+    val sideList = ArrayList<SideData>()
+
+    var mySideId = 0
+
     companion object {
 
         fun getTopicDataFromJson(json: JSONObject): TopicData {
@@ -24,13 +29,14 @@ class TopicData(var id: Int, var title: String, var imageURL: String) : Serializ
 
             }
 
+            topicData.mySideId = json.getInt("my_side_id")
+
             return topicData
         }
 
     }
 
-    //    선택 진영 목록을 담아줄 ArrayList
-    val sideList = ArrayList<SideData>()
+
 
     constructor() : this(0, "제목없음", "")
 
