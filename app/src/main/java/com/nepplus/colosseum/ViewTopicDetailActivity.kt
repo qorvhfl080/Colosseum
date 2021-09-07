@@ -38,6 +38,8 @@ class ViewTopicDetailActivity : BaseActivity() {
                 ServerUtil.postRequestTopicVote(mContext, clickedSideId, object : ServerUtil.JsonResponseHandler {
                     override fun onResponse(jsonObj: JSONObject) {
 
+                        getTopicDetailDataFromServer()
+
                     }
                 })
             }
