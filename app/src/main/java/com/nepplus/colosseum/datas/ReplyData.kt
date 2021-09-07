@@ -1,6 +1,8 @@
 package com.nepplus.colosseum.datas
 
 import org.json.JSONObject
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ReplyData(var id: Int, var content: String,
                 var likeCount: Int, var hateCount: Int,
@@ -10,7 +12,11 @@ class ReplyData(var id: Int, var content: String,
 
     lateinit var writer: UserData
 
+    val createdAt = Calendar.getInstance()
+
     companion object {
+
+        val serverFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
 
         fun getReplyDataFromJson(json: JSONObject): ReplyData {
 
@@ -30,7 +36,8 @@ class ReplyData(var id: Int, var content: String,
             val userObj = json.getJSONObject("user")
             replyData.writer = UserData.getUserDataFromJson(userObj)
 
-
+            val createdAtString = json.getString("created_at")
+            replyData.createdAt.time = serverFormat.parse(createdAtString)
 
             return replyData
 

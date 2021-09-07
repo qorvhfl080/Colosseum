@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.nepplus.colosseum.R
 import com.nepplus.colosseum.datas.ReplyData
 import com.nepplus.colosseum.datas.TopicData
+import java.text.SimpleDateFormat
 
 class ReplyAdapter(val mContext: Context, resId: Int, val mList: List<ReplyData>) : ArrayAdapter<ReplyData>(mContext, resId, mList) {
 
@@ -40,7 +41,8 @@ class ReplyAdapter(val mContext: Context, resId: Int, val mList: List<ReplyData>
 
         selectedSideTxt.text = "(${data.selectedSide.title})"
         writerNickNameTxt.text = data.writer.nickname
-        createdAtTxt.text = ""
+        val sdf = SimpleDateFormat("yyyy년 M월 d일")
+        createdAtTxt.text = sdf.format(data.createdAt.time)
         
         return row
     }
