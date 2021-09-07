@@ -184,6 +184,39 @@ class ServerUtil {
             })
 
         }
+
+//      진영 선택 투표하기
+        fun postRequestTopicVote(context: Context, sideId: Int, handler: JsonResponseHandler?) {
+
+            val urlString = "${HOST_URL}/topic_vote";
+            val formData = FormBody.Builder()
+                    .add("side_id", sideId.toString())
+                    .build()
+
+            val request = Request.Builder()
+                    .url(urlString)
+                    .post(formData)
+                    .header("X-Http-Token", ContextUtil.getToken(context))
+                    .build()
+
+            val client = OkHttpClient()
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+
+                    val bodyStr = response.body!!.string()
+                    val jsonObj = JSONObject(bodyStr)
+                    Log.d("server", jsonObj.toString())
+
+                    handler?.onResponse(jsonObj)
+                }
+            })
+
+        }
+
     }
 
 }

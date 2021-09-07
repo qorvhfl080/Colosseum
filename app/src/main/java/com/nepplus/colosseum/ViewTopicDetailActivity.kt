@@ -31,8 +31,13 @@ class ViewTopicDetailActivity : BaseActivity() {
     override fun setupEvents() {
         
         val ocl = object : View.OnClickListener {
-            override fun onClick(p0: View?) {
-                Toast.makeText(mContext, "버튼눌림", Toast.LENGTH_SHORT).show()
+            override fun onClick(view: View?) {
+
+                ServerUtil.postRequestTopicVote(mContext, 1, object : ServerUtil.JsonResponseHandler {
+                    override fun onResponse(jsonObj: JSONObject) {
+
+                    }
+                })
             }
         }
         
