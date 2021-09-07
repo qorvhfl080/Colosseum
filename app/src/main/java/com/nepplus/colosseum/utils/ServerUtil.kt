@@ -152,10 +152,13 @@ class ServerUtil {
         }
 
 //       토론 상세 정보 가져오기
-        fun getRequestTopicData(context: Context, topicId: Int, handler: JsonResponseHandler?) {
+        fun getRequestTopicDetail(context: Context, topicId: Int, handler: JsonResponseHandler?) {
 
             val url = "${HOST_URL}/topic".toHttpUrlOrNull()!!.newBuilder()
+
             url.addPathSegment(topicId.toString())
+            url.addEncodedQueryParameter("order_type", "NEW")
+
             val urlString = url.toString()
 
             Log.d("server", urlString)

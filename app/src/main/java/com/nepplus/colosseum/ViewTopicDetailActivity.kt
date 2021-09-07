@@ -40,7 +40,7 @@ class ViewTopicDetailActivity : BaseActivity() {
 //    토론 상세 데이터 서버에서 불러오기
     fun getTopicDetailDataFromServer() {
 
-        ServerUtil.getRequestTopicData(mContext, mTopicData.id, object : ServerUtil.JsonResponseHandler {
+        ServerUtil.getRequestTopicDetail(mContext, mTopicData.id, object : ServerUtil.JsonResponseHandler {
             override fun onResponse(jsonObj: JSONObject) {
 
                 val objData = jsonObj.getJSONObject("data")
