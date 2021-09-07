@@ -6,6 +6,10 @@ class ReplyData(var id: Int, var content: String,
                 var likeCount: Int, var hateCount: Int,
                 var myLike: Boolean, var myHate: Boolean, var replyCount: Int) {
 
+    lateinit var selectedSide: SideData
+
+    lateinit var writer: UserData
+
     companion object {
 
         fun getReplyDataFromJson(json: JSONObject): ReplyData {
@@ -19,6 +23,14 @@ class ReplyData(var id: Int, var content: String,
             replyData.myLike = json.getBoolean("my_like")
             replyData.myHate = json.getBoolean("my_dislike")
             replyData.replyCount = json.getInt("reply_count")
+
+            val selectedSideObj = json.getJSONObject("selected_side")
+            replyData.selectedSide = SideData.getSideDataFromJson(selectedSideObj)
+
+            val userObj = json.getJSONObject("user")
+            replyData.writer = UserData.getUserDataFromJson(userObj)
+
+
 
             return replyData
 
