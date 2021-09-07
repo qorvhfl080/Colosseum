@@ -46,6 +46,14 @@ class ViewTopicDetailActivity : BaseActivity() {
                 val objData = jsonObj.getJSONObject("data")
                 val topicObj = objData.getJSONObject("topic")
 
+                mTopicData = TopicData.getTopicDataFromJson(topicObj)
+
+                runOnUiThread {
+
+
+
+                }
+
             }
         })
 

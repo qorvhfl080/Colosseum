@@ -57,10 +57,7 @@ class MainActivity : BaseActivity() {
                 for (i in 0 until topicsArr.length()) {
                     val topicObj = topicsArr.getJSONObject(i)
 
-                    val tempTopicData = TopicData()
-                    tempTopicData.id = topicObj.getInt("id")
-                    tempTopicData.title = topicObj.getString("title")
-                    tempTopicData.imageURL = topicObj.getString("img_url")
+                    val tempTopicData = TopicData.getTopicDataFromJson(topicObj)
 
                     mTopicList.add(tempTopicData)
 
