@@ -13,11 +13,13 @@
         android:gravity="center_vertical">
 
         <TextView
+            android:id="@+id/selectedSideTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="(진영)"/>
 
         <TextView
+            android:id="@+id/writerNicknameTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="작성자 닉네임"
@@ -30,6 +32,7 @@
             android:layout_weight="1"/>
 
         <TextView
+            android:id="@+id/createdAtTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="3일전"/>
@@ -43,6 +46,7 @@
         android:layout_marginTop="5dp"/>
 
     <TextView
+        android:id="@+id/contentTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="댓글 본문"
@@ -62,6 +66,7 @@
         android:layout_marginTop="5dp">
 
         <TextView
+            android:id="@+id/replyCountTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="답글 ?개"/>
@@ -72,12 +77,14 @@
             android:layout_weight="1"/>
 
         <TextView
+            android:id="@+id/likeCountTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="좋아요 ?개"
             android:layout_marginRight="5dp"/>
 
         <TextView
+            android:id="@+id/hateCountTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="싫어요 ?개"/>
