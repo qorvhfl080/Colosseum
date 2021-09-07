@@ -3,6 +3,7 @@ package com.nepplus.colosseum
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
+import com.nepplus.colosseum.datas.ReplyData
 import com.nepplus.colosseum.datas.TopicData
 import com.nepplus.colosseum.utils.ServerUtil
 import kotlinx.android.synthetic.main.activity_view_topic_detail.*
@@ -11,6 +12,8 @@ import org.json.JSONObject
 class ViewTopicDetailActivity : BaseActivity() {
 
     lateinit var mTopicData: TopicData
+
+    val mReplyList = ArrayList<ReplyData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +50,16 @@ class ViewTopicDetailActivity : BaseActivity() {
                 val topicObj = objData.getJSONObject("topic")
 
                 mTopicData = TopicData.getTopicDataFromJson(topicObj)
+
+                val repliesArr = topicObj.getJSONArray("replies")
+                for (i in 0 until repliesArr.length()) {
+
+                    val replyObj = repliesArr.getJSONObject(i)
+                    val replyData = ReplyData.getReplyDataFromJson(replyObj)
+
+                    mReplyList.add(replyData)
+
+                }
 
                 refreshTopicDataToUI()
 
