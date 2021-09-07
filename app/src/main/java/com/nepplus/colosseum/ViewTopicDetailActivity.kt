@@ -33,7 +33,9 @@ class ViewTopicDetailActivity : BaseActivity() {
         val ocl = object : View.OnClickListener {
             override fun onClick(view: View?) {
 
-                ServerUtil.postRequestTopicVote(mContext, 1, object : ServerUtil.JsonResponseHandler {
+                val clickedSideId = view!!.tag.toString().toInt()
+
+                ServerUtil.postRequestTopicVote(mContext, clickedSideId, object : ServerUtil.JsonResponseHandler {
                     override fun onResponse(jsonObj: JSONObject) {
 
                     }
@@ -49,6 +51,9 @@ class ViewTopicDetailActivity : BaseActivity() {
     override fun setValues() {
 
         mTopicData = intent.getSerializableExtra("topic") as TopicData
+
+        voteToFirstSideBtn.tag = mTopicData.sideList[0].id
+        voteToSecondSideBtn.tag = mTopicData.sideList[1].id
 
         Glide.with(mContext)
             .load(mTopicData.imageURL)
