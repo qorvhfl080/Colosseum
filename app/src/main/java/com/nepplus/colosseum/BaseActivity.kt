@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toolbar
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.my_custom_action_bar.*
 
 abstract class BaseActivity : AppCompatActivity() {
 
@@ -33,6 +34,10 @@ abstract class BaseActivity : AppCompatActivity() {
 
         val myToolbar = defaultActionBar.customView.parent as androidx.appcompat.widget.Toolbar
         myToolbar.setContentInsetsAbsolute(0, 0)
+
+        backBtn.setOnClickListener {
+            finish()
+        }
 
     }
 

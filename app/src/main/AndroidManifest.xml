@@ -12,12 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Colosseum"
         android:usesCleartextTraffic="true">
-        <activity android:name=".EditReplyActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity android:name=".EditReplyActivity"/>
 
         <activity
-            android:name=".ViewTopicDetailActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:name=".ViewTopicDetailActivity" />
 
         <activity
             android:name=".SplashActivity"
@@ -30,15 +28,13 @@
         </activity>
 
         <activity
-            android:name=".MainActivity" />
+            android:name=".MainActivity"/>
 
         <activity
-            android:name=".SignUpActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:name=".SignUpActivity" />
 
         <activity
-            android:name=".SignInActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:name=".SignInActivity" />
 
     </application>
 
