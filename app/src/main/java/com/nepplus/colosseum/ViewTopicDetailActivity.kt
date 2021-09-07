@@ -33,6 +33,12 @@ class ViewTopicDetailActivity : BaseActivity() {
 
         addReplyBtn.setOnClickListener {
 
+            if (mTopicData.mySelectedSide == null) {
+                Toast.makeText(mContext, "투표를 진행해야 의견 등록이 가능합니다.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+
             val myIntent = Intent(mContext, EditReplyActivity::class.java)
             myIntent.putExtra("selectedSide", mTopicData.mySelectedSide)
             startActivity(myIntent)
