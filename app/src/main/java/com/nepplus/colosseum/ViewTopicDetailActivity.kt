@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
 import com.nepplus.colosseum.datas.TopicData
+import com.nepplus.colosseum.utils.ServerUtil
 import kotlinx.android.synthetic.main.activity_view_topic_detail.*
+import org.json.JSONObject
 
 class ViewTopicDetailActivity : BaseActivity() {
 
@@ -38,7 +40,14 @@ class ViewTopicDetailActivity : BaseActivity() {
 //    토론 상세 데이터 서버에서 불러오기
     fun getTopicDetailDataFromServer() {
 
+        ServerUtil.getRequestTopicData(mContext, mTopicData.id, object : ServerUtil.JsonResponseHandler {
+            override fun onResponse(jsonObj: JSONObject) {
 
+                val objData = jsonObj.getJSONObject("data")
+                val topicObj = objData.getJSONObject("topic")
+
+            }
+        })
 
     }
 
