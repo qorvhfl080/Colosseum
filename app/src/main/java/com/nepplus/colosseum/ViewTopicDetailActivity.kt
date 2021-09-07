@@ -1,5 +1,6 @@
 package com.nepplus.colosseum
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -29,6 +30,14 @@ class ViewTopicDetailActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
+        addReplyBtn.setOnClickListener {
+
+            val myIntent = Intent(mContext, EditReplyActivity::class.java)
+            myIntent.putExtra("selectedSide", mTopicData.mySelectedSide)
+            startActivity(myIntent)
+
+        }
         
         val ocl = object : View.OnClickListener {
             override fun onClick(view: View?) {

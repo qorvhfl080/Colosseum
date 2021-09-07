@@ -10,6 +10,8 @@ class TopicData(var id: Int, var title: String, var imageURL: String) : Serializ
 
     var mySideId = 0
 
+    var mySelectedSide: SideData? = null
+
     companion object {
 
         fun getTopicDataFromJson(json: JSONObject): TopicData {
@@ -30,6 +32,12 @@ class TopicData(var id: Int, var title: String, var imageURL: String) : Serializ
             }
 
             topicData.mySideId = json.getInt("my_side_id")
+
+            if (!json.isNull("my_side")) {
+
+                topicData.mySelectedSide = SideData.getSideDataFromJson(json.getJSONObject("my_side"))
+
+            }
 
             return topicData
         }
