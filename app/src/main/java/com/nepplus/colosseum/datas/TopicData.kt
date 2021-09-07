@@ -14,6 +14,16 @@ class TopicData(var id: Int, var title: String, var imageURL: String) : Serializ
             topicData.title = json.getString("title")
             topicData.imageURL = json.getString("img_url")
 
+            val sideArr = json.getJSONArray("sides")
+            for (i in 0 until sideArr.length()) {
+
+                val sideObj = sideArr.getJSONObject(i)
+                val sideData = SideData.getSideDataFromJson(sideObj)
+
+                topicData.sideList.add(sideData)
+
+            }
+
             return topicData
         }
 
