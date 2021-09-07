@@ -47,4 +47,31 @@ class ReplyData(var id: Int, var content: String,
 
     constructor() : this(0, "", 0, 0, false, false, 0)
 
+    fun getFormattedTimeAgo(): String {
+
+        val now = Calendar.getInstance()
+        val interval = now.timeInMillis - this.createdAt.timeInMillis
+
+        if (interval < 1000) {
+//            1초 이내
+            return "방금 전"
+        } else if (interval < 1000 * 60) {
+//            1분 이내
+            return "${interval / 1000}초 전"
+        } else if (interval < 3600000) {
+//            1시간 이내
+            return "${interval / 1000 / 60}분 전"
+        } else if (interval < 3600000 * 24) {
+//            1일 이내
+            return "${interval / 1000 / 60 / 60}시간 전"
+        } else if (interval < 5 * 24 * 60 * 60 * 1000) {
+//            5일 이내
+            return "${interval / 1000 / 60 / 60 / 24}일 전"
+        } else {
+            val replyDisplayFormat = SimpleDateFormat("yyyy년 M월 d일")
+            return replyDisplayFormat.format(this.createdAt.timeInMillis)
+        }
+
+    }
+
 }
