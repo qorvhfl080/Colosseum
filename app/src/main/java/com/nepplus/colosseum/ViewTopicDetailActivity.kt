@@ -2,6 +2,8 @@ package com.nepplus.colosseum
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.nepplus.colosseum.adapters.ReplyAdapter
 import com.nepplus.colosseum.datas.ReplyData
@@ -27,7 +29,16 @@ class ViewTopicDetailActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
-
+        
+        val ocl = object : View.OnClickListener {
+            override fun onClick(p0: View?) {
+                Toast.makeText(mContext, "버튼눌림", Toast.LENGTH_SHORT).show()
+            }
+        }
+        
+        voteToFirstSideBtn.setOnClickListener(ocl)
+        voteToSecondSideBtn.setOnClickListener(ocl)
+        
     }
 
     override fun setValues() {
