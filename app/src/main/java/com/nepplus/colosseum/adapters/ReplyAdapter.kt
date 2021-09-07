@@ -7,10 +7,14 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.nepplus.colosseum.R
+import com.nepplus.colosseum.ViewTopicDetailActivity
 import com.nepplus.colosseum.datas.ReplyData
 import com.nepplus.colosseum.datas.TopicData
+import com.nepplus.colosseum.utils.ServerUtil
+import org.json.JSONObject
 import java.text.SimpleDateFormat
 
 class ReplyAdapter(val mContext: Context, resId: Int, val mList: List<ReplyData>) : ArrayAdapter<ReplyData>(mContext, resId, mList) {
@@ -43,6 +47,27 @@ class ReplyAdapter(val mContext: Context, resId: Int, val mList: List<ReplyData>
         writerNickNameTxt.text = data.writer.nickname
         val sdf = SimpleDateFormat("yyyy년 M월 d일")
         createdAtTxt.text = data.getFormattedTimeAgo()
+
+        likeCountTxt.tag = true
+        hateCountTxt.tag = false
+
+        val ocl = object : View.OnClickListener {
+            override fun onClick(view: View?) {
+
+                val isLike = view!!.tag.toString().toBoolean()
+
+                ServerUtil.postRequestReplyLikeOrHate(mContext, data.id, isLike, object : ServerUtil.JsonResponseHandler {
+                    override fun onResponse(jsonObj: JSONObject) {
+
+                        (mContext as ViewTopicDetailActivity).getTopicDetailDataFromServer()
+
+                    }
+                })
+            }
+        }
+        
+        likeCountTxt.setOnClickListener(ocl)
+        hateCountTxt.setOnClickListener(ocl)
         
         return row
     }

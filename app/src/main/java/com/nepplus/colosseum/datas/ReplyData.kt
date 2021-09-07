@@ -58,10 +58,10 @@ class ReplyData(var id: Int, var content: String,
         } else if (interval < 1000 * 60) {
 //            1분 이내
             return "${interval / 1000}초 전"
-        } else if (interval < 3600000) {
+        } else if (interval < 1000 * 60 * 60) {
 //            1시간 이내
             return "${interval / 1000 / 60}분 전"
-        } else if (interval < 3600000 * 24) {
+        } else if (interval < 1000 * 60 * 60 * 24) {
 //            1일 이내
             return "${interval / 1000 / 60 / 60}시간 전"
         } else if (interval < 5 * 24 * 60 * 60 * 1000) {

@@ -84,7 +84,7 @@ class ViewTopicDetailActivity : BaseActivity() {
             .into(topicImg)
         titleTxt.text = mTopicData.title
 
-        getTopicDetailDataFromServer()
+        //getTopicDetailDataFromServer()
 
         mReplyAdapter = ReplyAdapter(mContext, R.layout.reply_list_ltem, mReplyList)
         replyListView.adapter = mReplyAdapter
