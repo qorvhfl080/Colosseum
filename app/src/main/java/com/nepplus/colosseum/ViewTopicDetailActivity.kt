@@ -29,6 +29,12 @@ class ViewTopicDetailActivity : BaseActivity() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        getTopicDetailDataFromServer()
+    }
+
     override fun setupEvents() {
 
         addReplyBtn.setOnClickListener {
@@ -38,6 +44,7 @@ class ViewTopicDetailActivity : BaseActivity() {
                 return@setOnClickListener
             }
 
+            //ServerUtil.postRequestTopicReply(mContext, , )
 
             val myIntent = Intent(mContext, EditReplyActivity::class.java)
             myIntent.putExtra("selectedSide", mTopicData.mySelectedSide)
@@ -94,6 +101,7 @@ class ViewTopicDetailActivity : BaseActivity() {
                 val topicObj = objData.getJSONObject("topic")
 
                 mTopicData = TopicData.getTopicDataFromJson(topicObj)
+                mReplyList.clear()
 
                 val repliesArr = topicObj.getJSONArray("replies")
                 for (i in 0 until repliesArr.length()) {
