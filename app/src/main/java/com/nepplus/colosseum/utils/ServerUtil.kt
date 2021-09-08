@@ -340,6 +340,41 @@ class ServerUtil {
             })
         }
 
+//        댓글에 답글달기
+        fun postRequestChildReply(context: Context, content: String, parentReplyId: Int, handler: JsonResponseHandler?) {
+
+            val urlString = "${HOST_URL}/topic_reply";
+            val formData = FormBody.Builder()
+                .add("content", content.toString())
+                .add("parent_reply_id", parentReplyId.toString())
+                .build()
+
+            val request = Request.Builder()
+                .url(urlString)
+                .post(formData)
+                .header("X-Http-Token", ContextUtil.getToken(context))
+                .build()
+
+            val client = OkHttpClient()
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+
+                    val bodyStr = response.body!!.string()
+                    val jsonObj = JSONObject(bodyStr)
+                    Log.d("server", jsonObj.toString())
+
+                    handler?.onResponse(jsonObj)
+                }
+            })
+
+        }
+
+
+
     }
 
 }
