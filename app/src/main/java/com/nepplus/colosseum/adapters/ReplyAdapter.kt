@@ -11,6 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.nepplus.colosseum.R
+import com.nepplus.colosseum.ViewReplyDetailActivity
 import com.nepplus.colosseum.ViewTopicDetailActivity
 import com.nepplus.colosseum.datas.ReplyData
 import com.nepplus.colosseum.datas.TopicData
@@ -88,8 +89,9 @@ class ReplyAdapter(val mContext: Context, resId: Int, val mList: List<ReplyData>
 
         replyCountTxt.setOnClickListener {
 
-//            val myIntent = Intent()
-//            mContext.startActivity(myIntent)
+            val myIntent = Intent(mContext, ViewReplyDetailActivity::class.java)
+            myIntent.putExtra("replyData", data)
+            mContext.startActivity(myIntent)
 
         }
         

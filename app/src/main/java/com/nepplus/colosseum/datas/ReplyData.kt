@@ -1,12 +1,13 @@
 package com.nepplus.colosseum.datas
 
 import org.json.JSONObject
+import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.*
 
 class ReplyData(var id: Int, var content: String,
                 var likeCount: Int, var hateCount: Int,
-                var myLike: Boolean, var myHate: Boolean, var replyCount: Int) {
+                var myLike: Boolean, var myHate: Boolean, var replyCount: Int) : Serializable {
 
     lateinit var selectedSide: SideData
 
