@@ -32,19 +32,27 @@ class NotificationListActivity : BaseActivity() {
 
     override fun setValues() {
 
+        getNotificationListFromServer()
+
+        mNotificationAdapter = NotificationAdapter(mContext, R.layout.notification_list_item, mNotificationList)
+        notificationListView.adapter = mNotificationAdapter
+
+    }
+
+    fun getNotificationListFromServer() {
+
         ServerUtil.getRequestNotificationCountOrList(mContext, true, object : ServerUtil.JsonResponseHandler {
             override fun onResponse(jsonObj: JSONObject) {
 
                 val dataObj = jsonObj.getJSONObject("data")
-                val notiArr = dataObj.getJSONArray("")
+                val notificationArr = dataObj.getJSONArray("notifications")
 
-                for (i in 0 until notiArr.length()) {
-                    val notiObj = notiArr.getJSONObject(i)
+                for (i in 0 until notificationArr.length()) {
 
-                    val notificationData = NotificationData.getNotificationDataFromJson(notiObj)
+                    val notificationObj = notificationArr.getJSONObject(i)
+                    val notificationData = NotificationData.getNotificationDataFromJson(notificationObj)
 
                     mNotificationList.add(notificationData)
-
                 }
 
                 runOnUiThread {
@@ -54,8 +62,7 @@ class NotificationListActivity : BaseActivity() {
             }
         })
 
-        mNotificationAdapter = NotificationAdapter(mContext, R.layout.notification_list_item, mNotificationList)
-        notificationListView.adapter = mNotificationAdapter
 
     }
+
 }

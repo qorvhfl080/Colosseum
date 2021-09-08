@@ -24,7 +24,7 @@ class NotificationAdapter(val mContext: Context, resId: Int, val mList: List<Not
 
         val data = mList[position]
 
-        val notificationTxt = row.findViewById<TextView>(R.id.notificationTxt)
+        val notificationTxt = row.findViewById<TextView>(R.id.notificationTitleTxt)
 
         notificationTxt.text = data.title
 
