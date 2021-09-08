@@ -50,7 +50,7 @@ class MainActivity : BaseActivity() {
         topicListView.adapter = mTopicAdapter
 
         backBtn.visibility = View.GONE
-        notificationBtn.visibility = View.VISIBLE
+        notificationLayout.visibility = View.VISIBLE
 
     }
 
