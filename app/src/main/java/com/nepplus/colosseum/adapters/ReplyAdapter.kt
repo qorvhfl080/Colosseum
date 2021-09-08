@@ -49,6 +49,18 @@ class ReplyAdapter(val mContext: Context, resId: Int, val mList: List<ReplyData>
         val sdf = SimpleDateFormat("yyyy년 M월 d일")
         createdAtTxt.text = data.getFormattedTimeAgo()
 
+        if (data.myLike) {
+            likeCountTxt.setBackgroundResource(R.drawable.red_border_rect)
+        } else {
+            likeCountTxt.setBackgroundResource(R.drawable.black_border_rect)
+        }
+
+        if (data.myHate) {
+            hateCountTxt.setBackgroundResource(R.drawable.blue_border_rect)
+        } else {
+            hateCountTxt.setBackgroundResource(R.drawable.black_border_rect)
+        }
+
         likeCountTxt.tag = true
         hateCountTxt.tag = false
 
