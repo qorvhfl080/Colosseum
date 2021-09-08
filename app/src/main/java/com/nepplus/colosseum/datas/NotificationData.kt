@@ -21,6 +21,11 @@ class NotificationData(var id: Int, var title: String) {
             val serverFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
             notificationData.createdAt.time = serverFormat.parse(createdAtString)
 
+            val localTimeZone = notificationData.createdAt.timeZone
+            val timeDiff = localTimeZone.rawOffset / 1000 / 60 / 60
+
+            notificationData.createdAt.add(Calendar.HOUR, timeDiff)
+
             return notificationData
         }
 
