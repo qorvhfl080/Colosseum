@@ -3,8 +3,10 @@ package com.nepplus.colosseum
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.google.firebase.iid.FirebaseInstanceId
 import com.nepplus.colosseum.adapters.TopicAdapter
 import com.nepplus.colosseum.datas.TopicData
 import com.nepplus.colosseum.utils.ServerUtil
@@ -23,6 +25,8 @@ class MainActivity : BaseActivity() {
         setContentView(R.layout.activity_main)
         setupEvents()
         setValues()
+
+        Log.d("push", FirebaseInstanceId.getInstance().token!!)
 
     }
 
