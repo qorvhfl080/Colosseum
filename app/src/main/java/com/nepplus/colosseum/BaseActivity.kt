@@ -1,6 +1,7 @@
 package com.nepplus.colosseum
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import android.widget.Toolbar
@@ -42,6 +43,10 @@ abstract class BaseActivity : AppCompatActivity() {
         
         notificationBtn.setOnClickListener {
             Toast.makeText(mContext, "알림을 보러 갑니다.", Toast.LENGTH_SHORT).show()
+
+            val myIntent = Intent(mContext, NotificationListActivity::class.java)
+            startActivity(myIntent)
+
         }
 
     }
