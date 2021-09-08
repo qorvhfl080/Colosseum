@@ -24,6 +24,7 @@ class MainActivity : BaseActivity() {
         setupEvents()
         setValues()
 
+        // 브랜치 구별용
     }
 
     override fun setupEvents() {
