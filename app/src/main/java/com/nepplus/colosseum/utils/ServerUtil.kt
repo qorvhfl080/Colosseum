@@ -16,8 +16,6 @@ class ServerUtil {
 
     }
 
-
-
     companion object {
 
 //        호스트 주소를 변수로 저장
@@ -312,6 +310,35 @@ class ServerUtil {
 
         }
 
+//        어디까지 읽은 알람인지 서버에게 알려주기
+        fun postRequestNotificationRead(context: Context, notificationId: Int, handler: JsonResponseHandler?) {
+            val urlString = "${HOST_URL}/notification";
+            val formData = FormBody.Builder()
+                    .add("noti_id", notificationId.toString())
+                    .build()
+
+            val request = Request.Builder()
+                    .url(urlString)
+                    .post(formData)
+                    .header("X-Http-Token", ContextUtil.getToken(context))
+                    .build()
+
+            val client = OkHttpClient()
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+
+                    val bodyStr = response.body!!.string()
+                    val jsonObj = JSONObject(bodyStr)
+                    Log.d("server", jsonObj.toString())
+
+                    handler?.onResponse(jsonObj)
+                }
+            })
+        }
 
     }
 

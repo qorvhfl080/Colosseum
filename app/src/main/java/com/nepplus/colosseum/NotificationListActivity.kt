@@ -59,9 +59,10 @@ class NotificationListActivity : BaseActivity() {
                     mNotificationAdapter.notifyDataSetChanged()
                 }
 
+                ServerUtil.postRequestNotificationRead(mContext, mNotificationList[0].id, null)
+
             }
         })
-
 
     }
 
