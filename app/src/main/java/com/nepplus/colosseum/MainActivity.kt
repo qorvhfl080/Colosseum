@@ -30,6 +30,30 @@ class MainActivity : BaseActivity() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+
+//        안 읽은 알림 받아오기
+        ServerUtil.getRequestNotificationCountOrList(mContext, false, object :  ServerUtil.JsonResponseHandler{
+            override fun onResponse(jsonObj: JSONObject) {
+                val dataObj = jsonObj.getJSONObject("data")
+                val unreadCount = dataObj.getInt("unread_noty_count")
+
+                runOnUiThread {
+                    if (unreadCount == 0) {
+                        notificationCountTxt.visibility = View.GONE
+                    } else {
+                        notificationCountTxt.text = unreadCount.toString()
+                        notificationCountTxt.visibility = View.VISIBLE
+                    }
+                }
+            }
+        })
+
+
+
+    }
+
     override fun setupEvents() {
 
         topicListView.setOnItemClickListener { adapterView, view, position, l ->
