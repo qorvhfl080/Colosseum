@@ -10,6 +10,7 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.nepplus.colosseum.R
 import com.nepplus.colosseum.datas.NotificationData
+import java.text.SimpleDateFormat
 
 class NotificationAdapter(val mContext: Context, resId: Int, val mList: List<NotificationData>) : ArrayAdapter<NotificationData>(mContext, resId, mList) {
 
@@ -24,10 +25,12 @@ class NotificationAdapter(val mContext: Context, resId: Int, val mList: List<Not
 
         val data = mList[position]
 
-        val notificationTxt = row.findViewById<TextView>(R.id.notificationTitleTxt)
+        val notificationTitleTxt = row.findViewById<TextView>(R.id.notificationTitleTxt)
+        val notificationDateTxt = row.findViewById<TextView>(R.id.notificationDateTxt)
 
-        notificationTxt.text = data.title
-
+        notificationTitleTxt.text = data.title
+        val sdf = SimpleDateFormat("yyyy년 M월 d일 a h:mm")
+        notificationDateTxt.text = sdf.format(data.createdAt.time)
 
         return row
     }
