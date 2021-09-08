@@ -83,12 +83,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="좋아요 ?개"
+            android:background="@drawable/red_border_rect"
+            android:padding="10dp"
             android:layout_marginRight="5dp"/>
 
         <TextView
             android:id="@+id/hateCountTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/blue_border_rect"
+            android:padding="10dp"
             android:text="싫어요 ?개"/>
 
     </LinearLayout>

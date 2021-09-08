@@ -1,6 +1,7 @@
 package com.nepplus.colosseum.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -68,6 +69,13 @@ class ReplyAdapter(val mContext: Context, resId: Int, val mList: List<ReplyData>
         
         likeCountTxt.setOnClickListener(ocl)
         hateCountTxt.setOnClickListener(ocl)
+
+        replyCountTxt.setOnClickListener {
+
+//            val myIntent = Intent()
+//            mContext.startActivity(myIntent)
+
+        }
         
         return row
     }
