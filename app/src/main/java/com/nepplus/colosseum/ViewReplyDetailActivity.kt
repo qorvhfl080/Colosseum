@@ -41,6 +41,8 @@ class ViewReplyDetailActivity : BaseActivity() {
             ServerUtil.postRequestChildReply(mContext, inputContent, mReplyData.id, object : ServerUtil.JsonResponseHandler {
                 override fun onResponse(jsonObj: JSONObject) {
 
+                    getChildRepliesFromServer()
+
                     runOnUiThread {
                         contentEdt.setText("")
 
@@ -79,6 +81,8 @@ class ViewReplyDetailActivity : BaseActivity() {
                 val replyObj = dataObj.getJSONObject("reply")
                 val repliesArr = replyObj.getJSONArray("replies")
 
+                mChildReplyList.clear()
+
                 for (i in 0 until repliesArr.length()) {
 
                     mChildReplyList.add(ReplyData.getReplyDataFromJson(repliesArr.getJSONObject(i)))
@@ -86,6 +90,8 @@ class ViewReplyDetailActivity : BaseActivity() {
 
                 runOnUiThread {
                     mChildReplyAdapter.notifyDataSetChanged()
+
+                    childReplyListView.smoothScrollToPosition(mChildReplyList.lastIndex)
                 }
 
             }
