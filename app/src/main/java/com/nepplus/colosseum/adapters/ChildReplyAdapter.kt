@@ -40,6 +40,25 @@ class ChildReplyAdapter(val mContext: Context, resId: Int, val mList: List<Reply
         sideAndNicknameTxt.text=  "(${data.selectedSide.title}) ${data.writer.nickname}"
         contentTxt.text = data.content
 
+        likeCountTxt.text = "좋아요 ${data.likeCount}"
+        hateCountTxt.text = "싫어요 ${data.hateCount}"
+
+        if (data.myLike) {
+            likeCountTxt.setBackgroundResource(R.drawable.red_border_box)
+            likeCountTxt.setTextColor(mContext.resources.getColor(R.color.red))
+        } else {
+            likeCountTxt.setBackgroundResource(R.drawable.black_border_rect)
+            likeCountTxt.setTextColor(mContext.resources.getColor(R.color.black))
+        }
+
+        if (data.myHate) {
+            hateCountTxt.setBackgroundResource(R.drawable.blue_border_box)
+            hateCountTxt.setTextColor(mContext.resources.getColor(R.color.blue))
+        } else {
+            hateCountTxt.setBackgroundResource(R.drawable.black_border_rect)
+            hateCountTxt.setTextColor(mContext.resources.getColor(R.color.black))
+        }
+
         likeCountTxt.tag = true
         hateCountTxt.tag = false
 
