@@ -32,8 +32,12 @@ class ChildReplyAdapter(val mContext: Context, resId: Int, val mList: List<Reply
 
         val data = mList[position]
 
+        val sideAndNicknameTxt = row.findViewById<TextView>(R.id.sideAndNicknameTxt)
+        val contentTxt = row.findViewById<TextView>(R.id.contentTxt)
 
-        
+        sideAndNicknameTxt.text=  "(${data.selectedSide.title}) ${data.writer.nickname}"
+        contentTxt.text = data.content
+
         return row
     }
 

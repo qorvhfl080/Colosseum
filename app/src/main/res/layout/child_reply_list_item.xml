@@ -7,11 +7,13 @@
     android:padding="10dp">
 
     <TextView
+        android:id="@+id/sideAndNicknameTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="(진영) 닉네임"/>
 
     <TextView
+        android:id="@+id/contentTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="답글 내용"
