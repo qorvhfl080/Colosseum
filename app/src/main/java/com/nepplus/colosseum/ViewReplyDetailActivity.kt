@@ -33,6 +33,10 @@ class ViewReplyDetailActivity : BaseActivity() {
 
         childReplyListView.setOnItemLongClickListener { adapterView, view, position, l ->
 
+//            if () {
+//                return@setOnItemLongClickListener true
+//            }
+
             val alert = AlertDialog.Builder(mContext)
             alert.setMessage("해당 댓글을 삭제하시겠습니까?")
             alert.setPositiveButton("확인", DialogInterface.OnClickListener { dialogInterface, position ->
