@@ -1,10 +1,12 @@
 package com.nepplus.colosseum
 
 import android.content.Context
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.nepplus.colosseum.adapters.ChildReplyAdapter
 import com.nepplus.colosseum.datas.ReplyData
 import com.nepplus.colosseum.utils.ServerUtil
@@ -28,6 +30,24 @@ class ViewReplyDetailActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
+        childReplyListView.setOnItemLongClickListener { adapterView, view, position, l ->
+
+            val alert = AlertDialog.Builder(mContext)
+            alert.setMessage("해당 댓글을 삭제하시겠습니까?")
+            alert.setPositiveButton("확인", DialogInterface.OnClickListener { dialogInterface, position ->
+
+
+
+                runOnUiThread {
+
+                }
+            })
+            alert.setNegativeButton("취소", null)
+            alert.show()
+
+            return@setOnItemLongClickListener true
+        }
 
         okBtn.setOnClickListener {
 
