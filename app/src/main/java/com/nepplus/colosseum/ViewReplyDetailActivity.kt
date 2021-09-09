@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.nepplus.colosseum.adapters.ChildReplyAdapter
 import com.nepplus.colosseum.datas.ReplyData
+import com.nepplus.colosseum.utils.GlobalData
 import com.nepplus.colosseum.utils.ServerUtil
 import kotlinx.android.synthetic.main.activity_view_reply_detail.*
 import org.json.JSONObject
@@ -33,9 +34,12 @@ class ViewReplyDetailActivity : BaseActivity() {
 
         childReplyListView.setOnItemLongClickListener { adapterView, view, position, l ->
 
-//            if () {
-//                return@setOnItemLongClickListener true
-//            }
+            val clickedReply = mChildReplyList[position]
+            
+            if (GlobalData.loginUser!!.id != clickedReply.id) {
+                Toast.makeText(mContext, "자신이 적은 답글만 삭제할 수 있습니다.", Toast.LENGTH_SHORT).show()
+                return@setOnItemLongClickListener true
+            }
 
             val alert = AlertDialog.Builder(mContext)
             alert.setMessage("해당 댓글을 삭제하시겠습니까?")

@@ -8,6 +8,7 @@ import android.os.Looper
 import android.util.Log
 import com.nepplus.colosseum.datas.UserData
 import com.nepplus.colosseum.utils.ContextUtil
+import com.nepplus.colosseum.utils.GlobalData
 import com.nepplus.colosseum.utils.ServerUtil
 import org.json.JSONObject
 
@@ -41,7 +42,10 @@ class SplashActivity : BaseActivity() {
                         val userObj = dataObj.getJSONObject("user")
 
                         val loginUserData = UserData.getUserDataFromJson(userObj)
-                        Log.d("login", loginUserData.nickname)
+
+                        GlobalData.loginUser = loginUserData
+                        Log.d("login", "${GlobalData.loginUser?.nickname}")
+
                     }
                 })
 
