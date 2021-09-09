@@ -76,6 +76,8 @@ class MainActivity : BaseActivity() {
         backBtn.visibility = View.GONE
         notificationLayout.visibility = View.VISIBLE
 
+        profileImg.visibility = View.VISIBLE
+
     }
 
     fun getMainDataFromServer() {
