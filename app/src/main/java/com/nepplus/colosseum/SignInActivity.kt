@@ -4,7 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.nepplus.colosseum.datas.UserData
 import com.nepplus.colosseum.utils.ContextUtil
+import com.nepplus.colosseum.utils.GlobalData
 import com.nepplus.colosseum.utils.ServerUtil
 import kotlinx.android.synthetic.main.activity_sign_in.*
 import org.json.JSONObject
@@ -57,6 +59,11 @@ class SignInActivity : BaseActivity() {
                         val token = dataObj.getString("token")
 
                         ContextUtil.setToken(mContext, token)
+
+                        val userObj = dataObj.getJSONObject("user")
+                        val loginUserData = UserData.getUserDataFromJson(userObj)
+
+                        GlobalData.loginUser = loginUserData
 
                         val myIntent = Intent(mContext, MainActivity::class.java)
                         startActivity(myIntent)
