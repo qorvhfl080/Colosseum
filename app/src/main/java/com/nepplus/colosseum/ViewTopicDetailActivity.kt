@@ -1,14 +1,17 @@
 package com.nepplus.colosseum
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.bumptech.glide.Glide
 import com.nepplus.colosseum.adapters.ReplyAdapter
 import com.nepplus.colosseum.datas.ReplyData
 import com.nepplus.colosseum.datas.TopicData
+import com.nepplus.colosseum.utils.GlobalData
 import com.nepplus.colosseum.utils.ServerUtil
 import kotlinx.android.synthetic.main.activity_view_topic_detail.*
 import org.json.JSONObject
@@ -36,6 +39,39 @@ class ViewTopicDetailActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
+        replyListView.setOnItemLongClickListener { adapterView, view, position, l ->
+
+            val clickedReply = mReplyList[position]
+
+            if (GlobalData.loginUser!!.id != clickedReply.writer.id) {
+                Toast.makeText(mContext, "자신이 적은 답글만 삭제할 수 있습니다.", Toast.LENGTH_SHORT).show()
+                return@setOnItemLongClickListener true
+            }
+
+            val alert = AlertDialog.Builder(mContext)
+            alert.setMessage("해당 댓글을 삭제하시겠습니까?")
+            alert.setPositiveButton("확인", DialogInterface.OnClickListener { dialogInterface, position ->
+
+                ServerUtil.deleteRequestReply(mContext, clickedReply.id, object : ServerUtil.JsonResponseHandler {
+                    override fun onResponse(jsonObj: JSONObject) {
+                        runOnUiThread {
+                            Toast.makeText(mContext, "답글을 삭제했습니다.", Toast.LENGTH_SHORT).show()
+                        }
+
+                        getTopicDetailDataFromServer()
+
+                    }
+                })
+
+
+            })
+            alert.setNegativeButton("취소", null)
+            alert.show()
+
+            return@setOnItemLongClickListener true
+
+        }
 
         addReplyBtn.setOnClickListener {
 
