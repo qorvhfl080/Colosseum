@@ -215,6 +215,38 @@ class ServerUtil {
 
         }
 
+//        댓글 상세 정보 가져오기
+        fun getRequestReplyDetail(context: Context, replyId: Int, handler: JsonResponseHandler?) {
+
+            val urlString = "${HOST_URL}/topic_reply";
+            val formData = FormBody.Builder()
+                    .add("reply_id", replyId.toString())
+                    .build()
+
+            val request = Request.Builder()
+                    .url(urlString)
+                    .get()
+                    .header("X-Http-Token", ContextUtil.getToken(context))
+                    .build()
+
+            val client = OkHttpClient()
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+
+                    val bodyStr = response.body!!.string()
+                    val jsonObj = JSONObject(bodyStr)
+                    Log.d("server", jsonObj.toString())
+
+                    handler?.onResponse(jsonObj)
+                }
+            })
+
+        }
+
 //        토론 주제에 의견 등록하기
         fun postRequestTopicReply(context: Context, topicId: Int, content: String, handler: JsonResponseHandler?) {
 
